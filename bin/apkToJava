@@ -16,6 +16,8 @@ end
 def wrong_usage
   print_info "Wrong Usage! Right usage is -"
   print_success "apkToJava path/to/apk/file"
+  print_info "To install required tools -"
+  print_success "apkToJava setup"
 end
 
 def valid_usage?
@@ -35,7 +37,9 @@ def valid_usage?
 end
 
 def execute
-  if valid_usage?
+  if ARGV[0] == 'setup'
+    initialize_setup
+  elsif valid_usage?
     initialize_setup if !env_setup?
     view_as_java_code ARGV[0]
   end
