@@ -64,7 +64,6 @@ module ApkToJava
     def clean_up
       print_info "cleaning the mess.."
       `rm -rf apkToJava`
-      'rm classes-dex2jar.jar'
       print_success "done!"
     end
 
