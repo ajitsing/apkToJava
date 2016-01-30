@@ -5,10 +5,40 @@ include ApkToJava::Operations
 include ApkToJava::Setup
 include ApkToJava::PrettyPrinter
 
-def execute
+def apk_exists?
+  File.exists? ARGV[0]
+end
+
+def has_apk_extension?
+  ARGV[0].split('/').last.split('.').last == 'apk'
+end
+
+def wrong_usage
+  print_info "Wrong Usage! Right usage is -"
+  print_success "apkToJava path/to/apk/file"
+end
+
+def valid_usage?
   apk_file = ARGV[0]
-  initialize_setup if !env_setup?
-  view_as_java_code apk_file
+  if ARGV.size > 1 || ARGV.empty?
+    wrong_usage
+    false
+  elsif !apk_exists?
+    print_error "#{apk_file} file does not exists!"
+    false
+  elsif !has_apk_extension?
+    print_error "#{apk_file} is not an APK file!"
+    false
+  else
+    true
+  end
+end
+
+def execute
+  if valid_usage?
+    initialize_setup if !env_setup?
+    view_as_java_code ARGV[0]
+  end
 end
 
 execute
