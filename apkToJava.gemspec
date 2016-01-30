@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name                        =   'apkToJava'
   s.version                     =   ApkToJava::VERSION
   s.date                        =   '2016-01-28'
-  s.summary                     =   'View android apk as as java in GUI'
+  s.summary                     =   'View android apk as java code in GUI'
   s.description                 =   s.summary
   s.authors                     =   ['Ajit Singh']
   s.email                       =   'jeetsingh.ajit@gamil.com'
