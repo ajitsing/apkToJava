@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/apk_to_java.rb'
+include ApkToJava::Operations
+include ApkToJava::Setup
+include ApkToJava::PrettyPrinter
+
+def execute
+  apk_file = ARGV[0]
+  initialize_setup if !env_setup?
+  view_as_java_code apk_file
+end
+
+execute
