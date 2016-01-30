@@ -18,14 +18,22 @@ module ApkToJava
       print_success "done!"
     end
 
+    def jadx_installed?
+      !`ls #{ApkToJava::JADX}`.empty?
+    end
+
+    def dex_to_jar_installed?
+      !`ls #{ApkToJava::DEX_TO_JAR}`.empty?
+    end
+
     def env_setup?
-      !`ls #{ApkToJava::DEX_TO_JAR}`.empty? && !`ls #{ApkToJava::DEX_TO_JAR}`.empty?
+      dex_to_jar_installed? && jadx_installed?
     end
 
     def initialize_setup
       print_info("Initializing setup!!")
-      install_dex2jar
-      install_jadx
+      install_dex2jar if !dex_to_jar_installed?
+      install_jadx if !jadx_installed?
       print_success("setup done :)")
     end
   end
