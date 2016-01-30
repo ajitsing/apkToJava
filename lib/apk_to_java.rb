@@ -1,45 +1,39 @@
 require_relative 'apk_to_java/pretty_printer'
+require_relative 'apk_to_java/mac_setup'
+require_relative 'apk_to_java/linux_setup'
+require_relative 'apk_to_java/os'
 
 module ApkToJava
   include ApkToJava::PrettyPrinter
-  DEX_TO_JAR = '/usr/local/Cellar/dex2jar/2.0/bin/d2j-dex2jar'
-  JADX = '/usr/local/Cellar/jadx/bin/jadx-gui'
-
-  module Setup
-    def install_dex2jar
-      print_info("Installing dex2jar..")
-      `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null && brew install dex2jar`
-      print_success "Done!"
-    end
-
-    def install_jadx
-      print_info("Installing jadx..")
-      `cd /usr/local/Cellar && wget https://github.com/skylot/jadx/releases/download/v0.6.0/jadx-0.6.0.zip && unzip jadx-0.6.0.zip -d jadx/ && rm jadx-0.6.0.zip && cd -`
-      print_success "Done!"
-    end
-
-    def jadx_installed?
-      File.exists? ApkToJava::JADX
-    end
-
-    def dex_to_jar_installed?
-      File.exists? ApkToJava::DEX_TO_JAR
-    end
-
-    def env_setup?
-      dex_to_jar_installed? && jadx_installed?
+  module EnvSetup
+    def supported_os
+      if ApkToJava::OS.mac?
+        ApkToJava::MacSetup.new
+      elsif ApkToJava::OS.linux?
+        ApkToJava::LinuxSetup.new
+      end
     end
 
     def initialize_setup
       print_info("Initializing setup!!")
-      install_dex2jar if !dex_to_jar_installed?
-      install_jadx if !jadx_installed?
-      print_success("Setup done :)")
+      os = supported_os
+      if !os.nil?
+        os.install_dex2jar if !os.dex_to_jar_installed?
+        os.install_jadx if !os.jadx_installed?
+        print_success("Setup done :)")
+      else
+        print_error "Sorry! apkToJava supports only MAC and Linux"
+      end
+    end
+
+    def env_setup?
+      supported_os.env_setup?
     end
   end
 
   module Operations
     TEMP_DIR = 'apkToJavaTmp'
+    include ApkToJava::EnvSetup
 
     def copy_apk(apk)
       `mkdir #{TEMP_DIR}`
@@ -51,16 +45,12 @@ module ApkToJava
       `unzip #{TEMP_DIR}/#{apk_name}.zip -d #{TEMP_DIR}/`
     end
 
-    def create_dex
-      `#{ApkToJava::DEX_TO_JAR} #{TEMP_DIR}/classes.dex`
-    end
-
     def path_to_dex
       `pwd`.chomp + "/#{TEMP_DIR}/classes.dex"
     end
 
     def create_jar(dex_file)
-      `#{ApkToJava::DEX_TO_JAR} #{dex_file} --force`
+      `#{supported_os.dex2jar} #{dex_file} --force`
     end
 
     def path_to_jar
@@ -74,7 +64,7 @@ module ApkToJava
     end
 
     def open_code_in_gui(jar_file)
-      `#{ApkToJava::JADX}  #{jar_file} &`
+      `#{supported_os.jadx}  #{jar_file} &`
     end
 
     def convert_to_dex(apk)
@@ -82,7 +72,6 @@ module ApkToJava
       copy_apk apk
       apk_name = apk.split('/').last.split('.').first
       unzip apk_name
-      create_dex
       print_success "Done!"
       path_to_dex
     end
