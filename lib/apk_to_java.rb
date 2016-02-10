@@ -64,7 +64,7 @@ module ApkToJava
     end
 
     def open_code_in_gui(jar_file)
-      `#{supported_os.jadx}  #{jar_file} &`
+      `#{supported_os.jadx}  #{jar_file} > /dev/null 2>&1 & disown`
     end
 
     def convert_to_dex(apk)
