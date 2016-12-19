@@ -14,17 +14,23 @@ http://www.singhajit.com/convert-apk-file-to-java-code/
 
 ## Installation
 
-```gem install apkToJava```
+```shell
+gem install apkToJava
+```
 
 ## Usage
 
 Below command will install the required tools for ```apkToJava``` to work
 
-```apkToJava setup```
+```shell
+apkToJava setup
+```
 
 Below command will process the apk file and open the code in jadx gui
 
-```apkToJava path/to/apk/file.apk```
+```shell
+apkToJava path/to/apk/file.apk
+```
 
 ## Supported Operatiing Systems
 - Mac
@@ -33,13 +39,27 @@ Below command will process the apk file and open the code in jadx gui
 ## Todo
 Add Windows support
 
-## Want to contribute?
-Fork it ( http://github.com/ajitsing/apkToJava )
+## License
+```LICENSE
+The MIT License (MIT)
 
-Create your feature branch
+Copyright (c) 2016 Ajit Singh
 
-add feature
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Push to the branch
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Create new Pull Request
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
