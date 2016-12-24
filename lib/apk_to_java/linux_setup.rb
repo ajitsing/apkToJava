@@ -5,7 +5,7 @@ module ApkToJava
     JADX = '/lib/jadx/bin/jadx-gui'
 
     def dex2jar
-      "sudo sh " + DEX_TO_JAR
+      'sudo sh ' + DEX_TO_JAR
     end
 
     def jadx
@@ -17,13 +17,21 @@ module ApkToJava
     end
 
     def install_dex2jar
-      print_info("Installing dex2jar..")
+      unless wget_present?
+        print_error 'Please install wget and try again..'
+        exit 1
+      end
+      print_info('Installing dex2jar..')
       `cd /lib && sudo #{download_dex2jar} && cd -`
       print_success "Done!"
     end
 
     def install_jadx
-      print_info("Installing jadx..")
+      unless wget_present?
+        print_error 'Please install wget and try again..'
+        exit 1
+      end
+      print_info('Installing jadx..')
       `cd /lib && sudo #{download_jadx} && cd -`
       print_success "Done!"
     end

@@ -17,5 +17,13 @@ module ApkToJava
     def env_setup?
       dex_to_jar_installed? && jadx_installed?
     end
+
+    def wget_present?
+      !find_executable('wget').nil?
+    end
+
+    def curl_present?
+      !find_executable('curl').nil?
+    end
   end
 end
