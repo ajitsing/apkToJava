@@ -1,5 +1,4 @@
 require_relative './setup.rb'
-require 'mkmf'
 
 module ApkToJava
   class MacSetup < Setup

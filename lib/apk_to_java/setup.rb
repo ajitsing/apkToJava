@@ -1,3 +1,5 @@
+require 'mkmf'
+
 module ApkToJava
   class Setup
     JADX_URL = "'https://drive.google.com/uc?id=0BxXHKToe2BBtMGZMQXR5NFhGSUE&export=download'"
