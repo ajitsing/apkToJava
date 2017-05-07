@@ -1,5 +1,6 @@
 # apkToJava
 [![Gem Version](https://badge.fury.io/rb/apkToJava.svg)](https://badge.fury.io/rb/apkToJava)
+![Gem Downloads](http://ruby-gem-downloads-badge.herokuapp.com/apkToJava?type=total)
 
 A ruby gem to view android apk as java code in GUI
 
