@@ -36,20 +36,29 @@ def valid_usage?
   end
 end
 
+def apk_file_name
+  apk_file = ARGV[0]
+  if apk_file.include?(' ')
+    new_name = apk_file.gsub(' ', '_')
+    `cp #{apk_file.gsub(' ', '\ ')} #{new_name}`
+    apk_file = new_name
+  end
+
+  if apk_file.split('.').size > 2
+    new_name = apk_file.split('.').join('_') + '.apk'
+    `cp #{apk_file} #{new_name}`
+    apk_file = new_name
+  end
+
+  apk_file
+end
+
 def execute
   if ARGV[0] == 'setup'
     initialize_setup
   elsif valid_usage?
     initialize_setup unless env_setup?
-
-    apk_file = ARGV[0]
-    if apk_file.include?(' ') || apk_file.include?('.')
-      new_name = apk_file.sub(' ', '_')
-      new_name = new_name.sub('.', '_')
-      `cp #{apk_file.sub(' ', '\ ')} #{new_name}`
-      apk_file = new_name
-    end
-    view_as_java_code apk_file
+    view_as_java_code apk_file_name
   end
 end
 
