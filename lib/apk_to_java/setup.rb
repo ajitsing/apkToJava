@@ -2,7 +2,7 @@ require 'mkmf'
 
 module ApkToJava
   class Setup
-    JADX_URL = "'https://drive.google.com/uc?id=0BxXHKToe2BBtMGZMQXR5NFhGSUE&export=download'"
+    JADX_URL = "'https://drive.google.com/uc?id=1GvmqyIcErQzYRnvV96FkgjRd-0nmf1Xg&export=download'"
 
     def download_jadx
       "wget --no-check-certificate #{JADX_URL} -O jadx.zip && sudo unzip jadx.zip -d jadx/ && rm jadx.zip"
