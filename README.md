@@ -1,5 +1,6 @@
 # apkToJava
 [![Gem Version](https://badge.fury.io/rb/apkToJava.svg)](https://badge.fury.io/rb/apkToJava)
+[![HitCount](http://hits.dwyl.io/ajitsing/apkToJava.svg)](http://hits.dwyl.io/ajitsing/apkToJava)
 ![Gem Downloads](http://ruby-gem-downloads-badge.herokuapp.com/apkToJava?type=total)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/Ajit5ingh.svg?style=social)](https://twitter.com/Ajit5ingh)
