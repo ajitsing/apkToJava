@@ -1,4 +1,5 @@
 # apkToJava
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ajitsing/apkToJava/graphs/commit-activity)
 [![Gem Version](https://badge.fury.io/rb/apkToJava.svg)](https://badge.fury.io/rb/apkToJava)
 [![HitCount](http://hits.dwyl.io/ajitsing/apkToJava.svg)](http://hits.dwyl.io/ajitsing/apkToJava)
 ![Gem Downloads](http://ruby-gem-downloads-badge.herokuapp.com/apkToJava?type=total)
